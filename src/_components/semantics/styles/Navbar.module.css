@@ -1,0 +1,41 @@
+nav#navbar {
+	height: 15vh;
+	width: 100%;
+	background-color: var(--white-bg);
+}
+
+nav#navbar > div {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+nav#navbar #navLogoSide {
+	height: 100%;
+}
+
+nav#navbar #navLogoSide > a {
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+	height: 100%;
+	border: 1px solid red;
+}
+
+nav#navbar #navLogoSide > a > #navLogoImg {
+	height: 100%;
+}
+
+nav#navbar #navLogoSide > a > #navLogoText {
+	height: 100%;
+}
+
+nav#navbar #navLinkSide {
+	border: 1px solid red;
+}
+
+nav#navbar #navLinkSide ul {
+	display: flex;
+	align-items: center;
+	gap: 2.5rem;
+}
