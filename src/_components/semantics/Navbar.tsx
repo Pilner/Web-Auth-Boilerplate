@@ -48,7 +48,7 @@ export function Navbar() {
 								</Link>
 							</li>
 							<li>
-								<LinkButton text="Login" href="/login"></LinkButton>
+								<LinkButton text="Sign in" href="/signin"></LinkButton>
 							</li>
 						</ul>
 					</div>
