@@ -1,0 +1,13 @@
+.inputStyle {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	margin: 1rem 0;
+}
+
+.inputCheckboxStyle {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	margin: 1rem 0;
+}
