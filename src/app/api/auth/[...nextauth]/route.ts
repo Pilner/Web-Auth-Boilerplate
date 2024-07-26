@@ -14,7 +14,6 @@ export const authOptions: NextAuthOptions = {
 				password: { label: 'Password', type: 'password'}
 			},
 			async authorize(credentials) {
-				console.log(credentials);
 				try {
 					// Handle Authorization
 					// Example: Fetch user from DB
@@ -40,7 +39,7 @@ export const authOptions: NextAuthOptions = {
 		})
 	],
 	pages: {
-		// signIn: '/signin', // Your custom Sign In page
+		signIn: '/signin', // Your custom Sign In page
 	},
 	// This is where you can modify the session and JWT token
 	callbacks: {
