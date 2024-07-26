@@ -1,7 +1,7 @@
+import { Footer } from '@/_components/semantics/Footer';
+import { Navbar } from '@/_components/semantics/Navbar';
 import Image from 'next/image';
 import styles from './notfound.module.css';
-import {Navbar} from '@/_components/semantics/Navbar';
-import {Footer} from '@/_components/semantics/Footer';
 
 export default function NotFound() {
   return (

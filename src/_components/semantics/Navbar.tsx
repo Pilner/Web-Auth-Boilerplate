@@ -1,5 +1,5 @@
-import Link from "next/link";
 import Image from "next/image";
+import Link from "next/link";
 
 import { LinkButton } from "@/_components/ui/Button";
 import styles from "./styles/Navbar.module.css";

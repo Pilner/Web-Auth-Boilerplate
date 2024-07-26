@@ -1,6 +1,6 @@
 import Link from 'next/link';
-import styles from './styles/Input.module.css';
 import { forwardRef } from 'react';
+import styles from './styles/Input.module.css';
 
 interface InputProps {
 	text: string;

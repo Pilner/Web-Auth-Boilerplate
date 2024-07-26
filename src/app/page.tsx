@@ -1,5 +1,5 @@
-import { Navbar } from "@/_components/semantics/Navbar"
 import { Footer } from "@/_components/semantics/Footer"
+import { Navbar } from "@/_components/semantics/Navbar"
 
 export default function Home() {
   return (

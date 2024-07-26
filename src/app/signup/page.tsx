@@ -1,7 +1,7 @@
 import { Footer } from "@/_components/semantics/Footer";
 import { Navbar } from "@/_components/semantics/Navbar";
 import { SubmitButton } from "@/_components/ui/Button";
-import { InputText, InputNumber, InputSelect, InputDate, InputCheckbox } from "@/_components/ui/Input";
+import { InputCheckbox, InputDate, InputNumber, InputSelect, InputText } from "@/_components/ui/Input";
 import Link from "next/link";
 import styles from "./page.module.css";
 

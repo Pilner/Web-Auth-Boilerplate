@@ -1,7 +1,7 @@
 'use client';
 
 import { getCsrfToken, signIn } from 'next-auth/react';
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 import { Footer } from '@/_components/semantics/Footer';
 import { Navbar } from '@/_components/semantics/Navbar';
