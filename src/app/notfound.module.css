@@ -1,0 +1,41 @@
+#notFoundPage {
+	height: 70vh;
+	text-align: center;
+}
+
+#errorMessage {
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+#errorPicture {
+	height: 50%;
+	padding-bottom: 1rem;
+}
+
+
+
+
+
+
+
+/* Font Styles */
+.errorTitleFont {
+	font-family: var(--main-font);
+	font-size: 100px;
+	font-weight: 700;
+	color: inherit;
+	line-height: 90px;
+	margin-bottom: 1rem;
+}
+
+.errorSubtitleFont {
+	font-family: var(--secondary-font);
+	font-family: 32px;
+	font-weight: 400;
+	padding-bottom: 1rem;
+	color: inherit;
+}

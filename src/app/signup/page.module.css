@@ -1,0 +1,45 @@
+#signUpPage {
+	min-height: 70vh;
+}
+
+#signUpPage a {
+	color: #0080ff;
+}
+
+#signUpPage>div {
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#formContainer {
+	width: 50%;
+	border: 1px solid red;
+	border-radius: 2.5rem;
+	padding: 2rem;
+}
+
+#formContainer > #formTitleGroup {
+	text-align: center;
+}
+
+form.signUpForm {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+
+form.signUpForm > div {
+	width: 45%;
+}
+
+#submitGroup {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+#submitGroup>#subForm {
+	margin: auto 0;
+}

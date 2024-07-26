@@ -1,0 +1,35 @@
+#forgotPasswordPage {
+	height: 70vh;
+}
+
+#forgotPasswordPage a {
+	color: #0080ff;
+}
+
+#forgotPasswordPage>div {
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#formContainer {
+	width: 50%;
+	border: 1px solid red;
+	border-radius: 2.5rem;
+	padding: 2rem;
+}
+
+#formContainer>h1 {
+	text-align: center;
+}
+
+#submitGroup {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+#submitGroup > #subForm {
+	margin: auto 0;
+}
