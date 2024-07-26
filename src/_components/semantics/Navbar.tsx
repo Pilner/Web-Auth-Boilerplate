@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 
-import { LinkButton } from "@/_components/Button";
+import { LinkButton } from "@/_components/ui/Button";
 import styles from "./styles/Navbar.module.css";
 
 export function Navbar() {
@@ -48,7 +48,7 @@ export function Navbar() {
 								</Link>
 							</li>
 							<li>
-								<LinkButton text="Login" href="/login"></LinkButton>
+								<LinkButton text="Sign in" href="/signin"></LinkButton>
 							</li>
 						</ul>
 					</div>
