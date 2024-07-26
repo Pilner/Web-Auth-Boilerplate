@@ -19,7 +19,11 @@ export default function SignInPage() {
 								<Link href="/signup">Sign up</Link>
 							</p>
 						</div>
-						<form id={styles.signInForm} method="POST">
+						<form
+							id="signInForm"
+							className={styles.signInForm}
+							method="POST"
+						>
 							<InputText
 								type="text"
 								text="Username"
@@ -43,10 +47,8 @@ export default function SignInPage() {
 									Forgot password?
 								</Link>
 							</div>
-							<SubmitButton
-								form={styles.signInForm}
-								text="Sign In"
-							/>
+
+							<SubmitButton form="signInForm" text="Sign In" />
 						</div>
 					</div>
 				</div>

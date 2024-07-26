@@ -24,13 +24,13 @@
 	text-align: center;
 }
 
-form#signUpForm {
+form.signUpForm {
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-between;
 }
 
-form#signUpForm > div {
+form.signUpForm > div {
 	width: 45%;
 }
 

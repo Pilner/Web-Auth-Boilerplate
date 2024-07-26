@@ -19,7 +19,11 @@ export default function SignUpPage() {
 								<Link href="/signin">Sign in</Link>
 							</p>
 						</div>
-						<form id={styles.signUpForm} method="POST">
+						<form
+							id="signUpForm"
+							className={styles.signUpForm}
+							method="POST"
+						>
 							<InputText
 								type="text"
 								text="Username"
@@ -83,7 +87,12 @@ export default function SignUpPage() {
 								inputId="gender"
 								name="gender"
 								required={true}
-								data={["Male", "Female", "Other", "Prefer not to say"]}
+								data={[
+									"Male",
+									"Female",
+									"Other",
+									"Prefer not to say",
+								]}
 							/>
 							<InputDate
 								text="Date of Birth"
@@ -102,10 +111,7 @@ export default function SignUpPage() {
 									required={true}
 								/>
 							</div>
-							<SubmitButton
-								form={styles.signUpForm}
-								text="Sign Up"
-							/>
+							<SubmitButton form="signUpForm" text="Sign Up" />
 						</div>
 					</div>
 				</div>

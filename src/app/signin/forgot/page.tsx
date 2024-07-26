@@ -13,7 +13,11 @@ export default function ForgotPasswordPage() {
 				<div className="container">
 					<div id={styles.formContainer}>
 						<h1 className="sectionTitleFont">Forgot Password</h1>
-						<form id={styles.forgotPasswordForm} method="POST">
+						<form
+							id="forgotPasswordForm"
+							className={styles.forgotPasswordForm}
+							method="POST"
+						>
 							<InputText
 								type="text"
 								text="Enter your username/email"
@@ -41,10 +45,12 @@ export default function ForgotPasswordPage() {
 						</form>
 						<div id={styles.submitGroup}>
 							<div id={styles.subForm}>
-								<Link href="/signin">Remembered the Password?</Link>
+								<Link href="/signin">
+									Remembered the Password?
+								</Link>
 							</div>
 							<SubmitButton
-								form={styles.forgotPasswordForm}
+								form="forgotPasswordForm"
 								text="Reset"
 							/>
 						</div>
