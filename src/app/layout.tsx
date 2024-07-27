@@ -1,3 +1,4 @@
+import { Providers } from "@/app/providers";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
@@ -22,7 +23,11 @@ export default function RootLayout({
 					crossOrigin="anonymous"
 				></script>
 			</head>
-			<body className={inter.className}>{children}</body>
+			<body className={inter.className}>
+				<Providers>
+					{children}
+				</Providers>
+			</body>
 		</html>
 	);
 }
