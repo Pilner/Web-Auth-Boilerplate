@@ -1,13 +1,13 @@
-<div style="text-align: center">
-	<h1>Web-Auth Boilerplate</h1>
+<h1 style="text-align: center">Web-Auth Boilerplate</h1>
 
-	A NextJS + Next-Auth Website Boilerplate to quickly build your Website that has Authentication.
+<p style="text-align: center">A NextJS + Next-Auth Website Boilerplate to quickly build your Website that has Authentication.</p>
 
-</div>
 
 ## How to use
 
 *Note: Make sure you have [Node.js](https://nodejs.org/en/) installed. To check, run `node -v` in your terminal*
+
+*Note: This website uses `TypeScript`*
 
 1. Click `Use this template` or clone into a local directory
 ```bash
@@ -29,8 +29,9 @@ npm run dev
 ```
 
 ## Setup
-* Modify CSS Variables according to your design and color palette in `/src/app/globals.css`
-* This website uses `TypeScript`.
+1. Modify CSS Variables according to your design and color palette in `/src/app/globals.css`.
+2. Setup `package.json` to rename the project name.
+3. Setup `src/app/layout.tsx` to edit website metadata.
 
 
 ## Custom Components
@@ -60,7 +61,24 @@ npm run dev
 * `/api/authenticated` Checks if you are authenticated
 
 ## Technique
-Make a general `section` and then inside of it add a `div` with the class `container`.
+
+Here is the standard procedure in creating your website. This is split into two categories: `Page Route` and `API Route`.
+
+### Page Route
+1. To create a new route, create a new folder in `src/app/` with your new route name.
+```
+src/
+- app/
+	- sample/
+		- sample2/
+			- page.tsx
+			- page.module.css
+		- page.tsx
+		- page.module.css
+```
+This will generate `localhost:3000/sample` and `localhost:3000/sample/sample2`.
+
+2. The template for a normal page with Navbar and Footer goes like this:
 ```tsx
 // /src/app/sample/page.tsx
 import { Footer } from "@/_components/semantics/Footer";
@@ -80,28 +98,117 @@ export default function SamplePage() {
 		</>
 	);
 }
-
 ```
 
-## Licenses
-MIT License
+3. To make a Page Route Protected, just add which route you want to protect in `src/middleware.ts`.
+```ts
+// src/middleware.ts
+export { default } from "next-auth/middleware";
 
-Copyright (c) 2024 Victuelles
+// Remove this if you want to make all routes protected
+export const config = {
+	matcher: [
+		// This is where you can add which routes to be protected
+		// '/sampleRoute',
+		// '/sampleRoute/:path*', // This is an example of a dynamic route
+	]
+}
+```
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+### API Route
+1. To create an API Route, create a new folder in `src/app/api/`.
+```
+src/
+- app/
+	- api/
+		- sample/
+			- route.ts
+```
+This will generate an API route in `localhost:3000/api/sample`.
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+2. The template for an API Route goes like this:
+#### GET Request
+```ts
+// /src/app/api/sample/page.tsx
+import { NextApiRequest, NextApiResponse } from "next";
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+export async function GET(req: NextApiRequest, res: NextApiResponse) {
+	// Set headers
+	let headers = {
+		"Content-Type": "application/json",
+	};
+
+	// Check if the request method is GET
+	if (req.method !== "GET") {
+		return new Response(JSON.stringify({
+			status: 405,
+			message: "Method not allowed"
+		}), headers);
+	}
+	
+	return new Response(JSON.stringify({
+		status: 200,
+		message: "GET Request Success"
+	}), { headers });
+}
+```
+
+#### POST Request
+```ts
+// /src/app/api/sample/page.tsx
+import { NextApiRequest, NextApiResponse } from "next";
+
+export async function POST(req: NextApiRequest, res: NextApiResponse) {
+	// Set headers
+	let headers = {
+		"Content-Type": "application/json",
+	};
+
+	// Check if the request method is POST
+	if (req.method !== "POST") {
+		return new Response(JSON.stringify({
+			status: 405,
+			message: "Method not allowed"
+		}), headers);
+	}
+
+	// Get data from the request body
+	const body = await new Response(req.body).json();
+
+	if (body) {
+		return new Response(JSON.stringify({
+			status: 200,
+			message: "POST Request Success"
+		}), { headers });
+	}
+
+	// Catch all unintended processes
+	return new Response(JSON.stringify({
+		status: 500,
+		message: "Server Error"
+	}), { headers });
+}
+```
+
+3. Protecting an API Route
+```ts
+	// Add these two for Route Protection
+	import { authOptions } from '@/app/api/auth/[...nextauth]/route';
+	import { getServerSession } from 'next-auth/next';
+
+	import { NextApiRequest, NextApiResponse } from "next";
+
+	export async function GET(req: NextApiRequest, res: NextApiResponse) {
+
+		// Check if user is authenticated
+		const session = await getServerSession(authOptions);
+		if (!session) {
+			return new Response(JSON.stringify({
+				status: 401,
+				message: "Not Authenticated"
+			}), { headers });
+		}
+
+		// YOUR CONTENT HERE
+	}
+```
