@@ -148,12 +148,14 @@ input::-webkit-inner-spin-button {
 	font-family: var(--main-font);
 	font-weight: 700;
 	font-size: 50px;
+	color: inherit;
 }
 
 .heroSubTitleFont {
 	font-family: var(--secondary-font);
 	font-weight: 400;
 	font-size: 20px;
+	color: inherit;
 }
 
 .sectionTitleFont {
@@ -161,6 +163,7 @@ input::-webkit-inner-spin-button {
 	padding-bottom: 1.5rem;
 	font-weight: 700;
 	font-size: 40px;
+	color: inherit;
 }
 
 .sectionSubTitleFont {
@@ -168,11 +171,13 @@ input::-webkit-inner-spin-button {
 	font-weight: 400;
 	font-size: 24px;
 	margin: auto;
+	color: inherit;
 }
 
 .sectionTextFont {
 	font-family: var(--secondary-font);
 	font-weight: 600;
 	font-size: 22px;
+	color: inherit;
 }
 /* #endregion */
