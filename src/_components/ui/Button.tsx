@@ -1,86 +1,34 @@
-import Link from "next/link";
-import styles from "./styles/Button.module.css";
+import React from 'react';
+import Link from 'next/link';
 
-interface ButtonProps {
-	text?: string;
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+	variant?: 'solid' | 'outline';
 	children?: React.ReactNode;
+	className?: string;
+	disabled?: boolean;
 }
 
-interface LinkButtonProps extends ButtonProps {
-	href: string;
-}
-
-interface SubmitButtonProps extends ButtonProps {
-	form: string;
-}
-
-interface FunctionButtonProps extends ButtonProps {
-	onClick: () => void;
-}
-
-export function LinkButton({ text, children, href }: LinkButtonProps) {
-
-	if (text === undefined) {
-		return (
-			<div className={styles.buttonDiv}>
-				<Link href={href} scroll={false}>
-					<button className={styles.roundButton}>
-						{children}
-					</button>
-				</Link>
-			</div>
-		);
-	}
+export default function Button({
+	variant = 'solid',
+	children,
+	className = '',
+	disabled = false,
+	...otherProps
+}: ButtonProps) {
+	const typeVariants = {
+		solid:
+			'bg-main-accent text-white border-main-accent hover:bg-white hover:text-main-accent disabled:bg-main-accent/25 disabled:text-white disabled:border-transparent disabled:pointer-events-none',
+		outline:
+			'border-main-accent text-main-accent hover:bg-main-accent hover:text-white disabled:bg-gray-300 disabled:text-gray-500 disabled:border-gray-300 disabled:pointer-events-none',
+	};
 
 	return (
-		<div className={styles.buttonDiv}>
-			<Link href={href} scroll={false}>
-				<button className={styles.roundButton}>
-					{text}
-				</button>
-			</Link>
-		</div>
-	);
-}
-
-export function SubmitButton({ text, children, form }: SubmitButtonProps) {
-
-	if (text === undefined) {
-		return (
-			<div className={styles.buttonDiv}>
-				<button className={styles.roundButton} type="submit" form={form}>
-					{children}
-				</button>
-			</div>
-		);
-	}
-
-	return (
-		<div className={styles.buttonDiv}>
-			<button className={styles.roundButton} type="submit" form={form}>
-				{text}
-			</button>
-		</div>
-	);
-}
-
-export function FunctionButton({ text, children, onClick }: FunctionButtonProps) {
-
-	if (text === undefined) {
-		return (
-			<div className={styles.buttonDiv}>
-				<button className={styles.roundButton} onClick={onClick}>
-					{children}
-				</button>
-			</div>
-		);
-	}
-
-	return (
-		<div className={styles.buttonDiv}>
-			<button className={styles.roundButton} onClick={onClick}>
-				{text}
-			</button>
-		</div>
+		<button
+			className={`flex cursor-pointer items-center justify-center rounded-xl border px-2 py-1 transition duration-200 sm:px-4 sm:py-2 ${typeVariants[variant]} ${className}`}
+			disabled={disabled}
+			{...otherProps}
+		>
+			{children}
+		</button>
 	);
 }

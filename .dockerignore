@@ -1,0 +1,24 @@
+# Ignore Node.js dependencies
+node_modules
+npm-debug.log
+yarn.lock
+pnpm-lock.yaml
+
+# Ignore build artifacts
+.next
+out
+dist
+
+# Ignore Git and Husky (only needed for development)
+.git
+.gitignore
+.husky
+
+# Ignore environment files (to avoid exposing secrets)
+.env*
+.env.*
+
+# Ignore logs and OS-specific files
+*.log
+.DS_Store
+Thumbs.db

@@ -1,122 +1,57 @@
-import { Footer } from "@/_components/semantics/Footer";
-import { Navbar } from "@/_components/semantics/Navbar";
-import { SubmitButton } from "@/_components/ui/Button";
-import { InputCheckbox, InputDate, InputNumber, InputSelect, InputText } from "@/_components/ui/Input";
-import Link from "next/link";
-import styles from "./page.module.css";
+'use client';
 
-export default function SignUpPage() {
+import { Footer } from '@/_components/semantics/Footer';
+import { Navbar } from '@/_components/semantics/Navbar';
+import Link from 'next/link';
+import { TextInput } from '@/_components/ui/Input';
+import Button from '@/_components/ui/Button';
+
+export default function RegisterPage() {
+	const handleRegister = async (event: any) => {
+		event.preventDefault();
+		const formData = new FormData(event.currentTarget);
+		console.log(Object.fromEntries(formData));
+	};
+
 	return (
-		<>
+		<main className="flex min-h-screen flex-col">
 			<Navbar />
-			<section id={styles.signUpPage}>
-				<div className="container">
-					<div id={styles.formContainer}>
-						<div id={styles.formTitleGroup}>
-							<h1 className="sectionTitleFont">Sign Up</h1>
+			<section className="flex h-full flex-grow items-center justify-center">
+				<div className="container h-full">
+					<div className="mx-auto flex h-full w-[35rem] flex-col items-center justify-center gap-4 overflow-hidden rounded-xl border border-red-500 p-4">
+						<div className="flex flex-col gap-2 text-center">
+							<h1 className="text-4xl">Sign Up</h1>
 							<p>
-								Already have an account?{" "}
-								<Link href="/signin">Sign in</Link>
+								Already have an account?{' '}
+								<Link href="/signin">
+									<span className="hover:underline">Sign in</span>
+								</Link>
 							</p>
 						</div>
-						<form
-							id="signUpForm"
-							className={styles.signUpForm}
-							method="POST"
-						>
-							<InputText
-								type="text"
-								text="Username"
-								inputId="username"
-								name="username"
-								placeholder="Enter username"
-								required={true}
-							/>
-							<InputText
-								type="text"
-								text="First Name"
-								inputId="first_name"
-								name="first_name"
-								placeholder="Enter First Name"
-								required={true}
-							/>
-							<InputText
-								type="text"
-								text="Last Name"
-								inputId="last_name"
-								name="last_name"
-								placeholder="Enter Last Name"
-								required={true}
-							/>
-							<InputText
-								type="email"
-								text="Email Address"
-								inputId="email"
-								name="email"
-								placeholder="Enter Email Address"
-								required={true}
-							/>
-							<InputNumber
-								text="Mobile Number"
-								inputId="mobile_number"
-								name="mobile_number"
-								placeholder="Enter Mobile Number"
-								required={true}
-								min={5}
-								step={1}
-								negative={false}
-							/>
-							<InputText
-								type="password"
-								text="Password"
-								inputId="password"
-								name="password"
-								placeholder="Enter Password"
-								required={true}
-							/>
-							<InputText
-								type="password"
-								text="Confirm Password"
-								inputId="password2"
-								name="password2"
-								placeholder="Enter Password"
-								required={true}
-							/>
-							<InputSelect
-								text="Gender"
-								inputId="gender"
-								name="gender"
-								required={true}
-								data={[
-									"Male",
-									"Female",
-									"Other",
-									"Prefer not to say",
-								]}
-							/>
-							<InputDate
-								text="Date of Birth"
-								inputId="birthday"
-								name="birthday"
-								required={true}
-							/>
-						</form>
-						<div id={styles.submitGroup}>
-							<div id={styles.subForm}>
-								<InputCheckbox
-									form={styles.signUpForm}
-									text="I agree to the Terms and Conditions"
-									inputId="terms"
-									name="terms"
-									required={true}
-								/>
+						<form className="flex w-full flex-col gap-4" onSubmit={handleRegister}>
+							<div className="">
+								<TextInput type="text" name="username" placeholder="Enter your username" required />
 							</div>
-							<SubmitButton form="signUpForm" text="Sign Up" />
-						</div>
+							<div className="">
+								<TextInput type="email" name="email" placeholder="Enter your email" required />
+							</div>
+							<div className="">
+								<TextInput type="password" name="password" placeholder="Enter your password" required />
+							</div>
+							<div className="">
+								<TextInput type="password" name="password2" placeholder="Enter your password again" required />
+							</div>
+							<div className="flex items-center justify-between">
+								<Link href="/signin" className="text-sm text-blue-500 hover:underline">
+									Sign In
+								</Link>
+								<Button type="submit">Register</Button>
+							</div>
+						</form>
 					</div>
 				</div>
 			</section>
 			<Footer />
-		</>
+		</main>
 	);
 }

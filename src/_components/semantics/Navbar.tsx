@@ -1,58 +1,36 @@
-import Image from "next/image";
-import Link from "next/link";
+import Image from 'next/image';
+import Link from 'next/link';
 
-import { LinkButton } from "@/_components/ui/Button";
-import styles from "./styles/Navbar.module.css";
+import Button from '@/_components/ui/Button';
 
 export function Navbar() {
 	return (
-		<nav id={styles.navbar}>
-			<div className="container">
-				<div id={styles.navLogoSide}>
+		<nav className="h-[10rem] border border-red-500">
+			<div className="container flex h-full items-center justify-between border border-red-500">
+				<div className="flex h-full items-center gap-4">
+					<Link href="/" className="contents">
+						<Image src="/images/placeholder.png" alt="Logo" width={100} height={100} className="h-full w-auto" />
+					</Link>
 					<Link href="/">
-						<div id={styles.navLogoImg}>
-								<Image
-									src="/images/placeholder.png"
-									alt="Logo"
-									width={0}
-									height={0}
-									style={{
-										height: "100%",
-										width: "auto",
-										objectFit: "contain",
-									}}
-									unoptimized={true}
-								/>
-						</div>
-						<div id={styles.navLogotext}>
-							<p>Logo</p>
-						</div>
+						<p>Logo</p>
 					</Link>
 				</div>
-				<div id={styles.navLinkSide}>
-					<div>
-						<ul>
-							<li>
-								<Link href="/" scroll={false}>
-									Home
-								</Link>
-							</li>
-							<li>
-								<Link href="/" scroll={false}>
-									About
-								</Link>
-							</li>
-							<li>
-								<Link href="/" scroll={false}>
-									Contact
-								</Link>
-							</li>
-							<li>
-								<LinkButton text="Sign in" href="/signin"></LinkButton>
-							</li>
-						</ul>
-					</div>
-				</div>
+				<ul className="flex h-full items-center gap-8">
+					<Link href="#">
+						<li>First</li>
+					</Link>
+					<Link href="#">
+						<li>Second</li>
+					</Link>
+					<Link href="#">
+						<li>Third</li>
+					</Link>
+					<Link href="#" className="contents">
+						<Button disabled={false}>
+							<p>Button</p>
+						</Button>
+					</Link>
+				</ul>
 			</div>
 		</nav>
 	);
