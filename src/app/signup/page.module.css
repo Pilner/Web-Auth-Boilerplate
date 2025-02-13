@@ -6,7 +6,7 @@
 	color: #0080ff;
 }
 
-#signUpPage>div {
+#signUpPage > div {
 	height: 100%;
 	display: flex;
 	justify-content: center;
@@ -40,6 +40,6 @@ form.signUpForm > div {
 	align-items: center;
 }
 
-#submitGroup>#subForm {
+#submitGroup > #subForm {
 	margin: auto 0;
 }

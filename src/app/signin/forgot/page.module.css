@@ -6,7 +6,7 @@
 	color: #0080ff;
 }
 
-#forgotPasswordPage>div {
+#forgotPasswordPage > div {
 	height: 100%;
 	display: flex;
 	justify-content: center;
@@ -20,7 +20,7 @@
 	padding: 2rem;
 }
 
-#formContainer>h1 {
+#formContainer > h1 {
 	text-align: center;
 }
 

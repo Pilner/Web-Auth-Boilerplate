@@ -1,5 +1,5 @@
-import Link from "next/link";
-import styles from "./styles/Button.module.css";
+import Link from 'next/link';
+import styles from './styles/Button.module.css';
 
 interface ButtonProps {
 	text?: string;
@@ -19,14 +19,11 @@ interface FunctionButtonProps extends ButtonProps {
 }
 
 export function LinkButton({ text, children, href }: LinkButtonProps) {
-
 	if (text === undefined) {
 		return (
 			<div className={styles.buttonDiv}>
 				<Link href={href} scroll={false}>
-					<button className={styles.roundButton}>
-						{children}
-					</button>
+					<button className={styles.roundButton}>{children}</button>
 				</Link>
 			</div>
 		);
@@ -35,16 +32,13 @@ export function LinkButton({ text, children, href }: LinkButtonProps) {
 	return (
 		<div className={styles.buttonDiv}>
 			<Link href={href} scroll={false}>
-				<button className={styles.roundButton}>
-					{text}
-				</button>
+				<button className={styles.roundButton}>{text}</button>
 			</Link>
 		</div>
 	);
 }
 
 export function SubmitButton({ text, children, form }: SubmitButtonProps) {
-
 	if (text === undefined) {
 		return (
 			<div className={styles.buttonDiv}>
@@ -65,7 +59,6 @@ export function SubmitButton({ text, children, form }: SubmitButtonProps) {
 }
 
 export function FunctionButton({ text, children, onClick }: FunctionButtonProps) {
-
 	if (text === undefined) {
 		return (
 			<div className={styles.buttonDiv}>

@@ -4,7 +4,7 @@ import Image from 'next/image';
 import styles from './notfound.module.css';
 
 export default function NotFound() {
-  return (
+	return (
 		<>
 			<Navbar />
 			<section id={styles.notFoundPage}>
@@ -17,8 +17,8 @@ export default function NotFound() {
 								width={0}
 								height={0}
 								style={{
-									width: "auto",
-									height: "100%",
+									width: 'auto',
+									height: '100%',
 								}}
 								unoptimized={true}
 							/>
@@ -38,5 +38,5 @@ export default function NotFound() {
 			</section>
 			<Footer />
 		</>
-  );
+	);
 }

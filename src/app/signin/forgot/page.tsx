@@ -1,9 +1,9 @@
-import { Footer } from "@/_components/semantics/Footer";
-import { Navbar } from "@/_components/semantics/Navbar";
-import { SubmitButton } from "@/_components/ui/Button";
-import { InputText } from "@/_components/ui/Input";
-import Link from "next/link";
-import styles from "./page.module.css";
+import { Footer } from '@/_components/semantics/Footer';
+import { Navbar } from '@/_components/semantics/Navbar';
+import { SubmitButton } from '@/_components/ui/Button';
+import { InputText } from '@/_components/ui/Input';
+import Link from 'next/link';
+import styles from './page.module.css';
 
 export default function ForgotPasswordPage() {
 	return (
@@ -13,11 +13,7 @@ export default function ForgotPasswordPage() {
 				<div className="container">
 					<div id={styles.formContainer}>
 						<h1 className="sectionTitleFont">Forgot Password</h1>
-						<form
-							id="forgotPasswordForm"
-							className={styles.forgotPasswordForm}
-							method="POST"
-						>
+						<form id="forgotPasswordForm" className={styles.forgotPasswordForm} method="POST">
 							<InputText
 								type="text"
 								text="Enter your username/email"
@@ -45,14 +41,9 @@ export default function ForgotPasswordPage() {
 						</form>
 						<div id={styles.submitGroup}>
 							<div id={styles.subForm}>
-								<Link href="/signin">
-									Remembered the Password?
-								</Link>
+								<Link href="/signin">Remembered the Password?</Link>
 							</div>
-							<SubmitButton
-								form="forgotPasswordForm"
-								text="Reset"
-							/>
+							<SubmitButton form="forgotPasswordForm" text="Reset" />
 						</div>
 					</div>
 				</div>

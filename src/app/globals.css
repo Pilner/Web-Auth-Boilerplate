@@ -1,8 +1,8 @@
 /* #region CSS Variables */
 :root {
-	--main-font: "Inter", sans-serif;
-	--secondary-font: "Roboto", sans-serif;
-	
+	--main-font: 'Inter', sans-serif;
+	--secondary-font: 'Roboto', sans-serif;
+
 	--main-accent: #ff0000;
 	--sub-accent: #ff0000;
 
@@ -61,7 +61,8 @@ body {
 	outline: inherit;
 }
 
-ul, ol {
+ul,
+ol {
 	list-style-type: none;
 	padding: 0;
 	margin: 0;
@@ -84,14 +85,13 @@ a {
 	color: inherit;
 }
 
-
 /* #region Input Styling */
-input[type="text"],
-input[type="number"],
-input[type="email"],
-input[type="password"],
-input[type="tel"],
-input[type="date"],
+input[type='text'],
+input[type='number'],
+input[type='email'],
+input[type='password'],
+input[type='tel'],
+input[type='date'],
 textarea,
 select {
 	font-family: inherit;
@@ -102,12 +102,12 @@ select {
 	box-sizing: border-box;
 }
 
-input[type="text"]:focus,
-input[type="number"]:focus,
-input[type="email"]:focus,
-input[type="password"]:focus,
-input[type="tel"]:focus,
-input[type="date"]:focus,
+input[type='text']:focus,
+input[type='number']:focus,
+input[type='email']:focus,
+input[type='password']:focus,
+input[type='tel']:focus,
+input[type='date']:focus,
 textarea:focus,
 select:focus {
 	outline: 1px solid rgba(0, 0, 0, 0.4);
@@ -117,7 +117,7 @@ textarea {
 	font-family: var(--secondary-font);
 }
 
-input[type="checkbox"] {
+input[type='checkbox'] {
 	width: 1.5rem;
 	aspect-ratio: 1/1;
 	margin: 0 1rem;
@@ -129,7 +129,7 @@ select {
 }
 
 /* Number Input styling */
-input[type="number"] {
+input[type='number'] {
 	-moz-appearance: textfield;
 	appearance: textfield;
 }

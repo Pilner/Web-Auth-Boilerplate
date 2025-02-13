@@ -1,7 +1,7 @@
-import Image from "next/image";
-import Link from "next/link";
+import Image from 'next/image';
+import Link from 'next/link';
 
-import styles from "./styles/Footer.module.css";
+import styles from './styles/Footer.module.css';
 
 export function Footer() {
 	return (
@@ -17,9 +17,9 @@ export function Footer() {
 									width={0}
 									height={0}
 									style={{
-										height: "100%",
-										width: "auto",
-										objectFit: "contain",
+										height: '100%',
+										width: 'auto',
+										objectFit: 'contain',
 									}}
 									unoptimized={true}
 								/>

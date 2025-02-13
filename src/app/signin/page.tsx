@@ -11,28 +11,27 @@ import Link from 'next/link';
 import styles from './page.module.css';
 
 export default function SignInPage() {
-
-	const [csrfToken, setCsrfToken] = useState<string | undefined>("");
+	const [csrfToken, setCsrfToken] = useState<string | undefined>('');
 
 	useEffect(() => {
 		const fetchData = async () => {
 			const csrf = await getCsrfToken();
 			setCsrfToken(csrf);
-		}
+		};
 		fetchData();
 	}, []);
 
 	async function handleSignIn(event: any) {
 		event.preventDefault();
 		const formData = new FormData(event.currentTarget);
-		formData.append("csrfToken", csrfToken as string ?? "");
+		formData.append('csrfToken', (csrfToken as string) ?? '');
 		console.log(Object.fromEntries(formData));
 
 		try {
-			const result = await signIn("credentials", {
+			const result = await signIn('credentials', {
 				redirect: false,
-				username: formData.get("username") as string,
-				password: formData.get("password") as string,
+				username: formData.get('username') as string,
+				password: formData.get('password') as string,
 			});
 
 			console.log(result);
@@ -40,16 +39,16 @@ export default function SignInPage() {
 			if (result?.error) {
 				throw new Error(result.error);
 			} else if (result?.ok) {
-				window.location.href = "/";
+				window.location.href = '/';
 			}
 		} catch (error) {
 			// Handle Error: By showing an alert or custom message
-			alert("Invalid Username or Password");
+			alert('Invalid Username or Password');
 			console.error(error);
 		}
 	}
 
-  return (
+	return (
 		<>
 			<Navbar />
 			<section id={styles.signInPage}>
@@ -58,16 +57,10 @@ export default function SignInPage() {
 						<div id={styles.formTitleGroup}>
 							<h1 className="sectionTitleFont">Sign in</h1>
 							<p>
-								Don't have an account?{" "}
-								<Link href="/signup">Sign up</Link>
+								Don't have an account? <Link href="/signup">Sign up</Link>
 							</p>
 						</div>
-						<form
-							id="signInForm"
-							className={styles.signInForm}
-							onSubmit={handleSignIn}
-							method="POST"
-						>
+						<form id="signInForm" className={styles.signInForm} onSubmit={handleSignIn} method="POST">
 							<InputText
 								type="text"
 								text="Username"
@@ -87,9 +80,7 @@ export default function SignInPage() {
 						</form>
 						<div id={styles.submitGroup}>
 							<div id={styles.subForm}>
-								<Link href="/signin/forgot">
-									Forgot password?
-								</Link>
+								<Link href="/signin/forgot">Forgot password?</Link>
 							</div>
 
 							<SubmitButton form="signInForm" text="Sign In" />
@@ -99,5 +90,5 @@ export default function SignInPage() {
 			</section>
 			<Footer />
 		</>
-  );
+	);
 }
