@@ -1,9 +1,9 @@
-import { Footer } from "@/_components/semantics/Footer";
-import { Navbar } from "@/_components/semantics/Navbar";
-import { SubmitButton } from "@/_components/ui/Button";
-import { InputCheckbox, InputDate, InputNumber, InputSelect, InputText } from "@/_components/ui/Input";
-import Link from "next/link";
-import styles from "./page.module.css";
+import { Footer } from '@/_components/semantics/Footer';
+import { Navbar } from '@/_components/semantics/Navbar';
+import { SubmitButton } from '@/_components/ui/Button';
+import { InputCheckbox, InputDate, InputNumber, InputSelect, InputText } from '@/_components/ui/Input';
+import Link from 'next/link';
+import styles from './page.module.css';
 
 export default function SignUpPage() {
 	return (
@@ -15,15 +15,10 @@ export default function SignUpPage() {
 						<div id={styles.formTitleGroup}>
 							<h1 className="sectionTitleFont">Sign Up</h1>
 							<p>
-								Already have an account?{" "}
-								<Link href="/signin">Sign in</Link>
+								Already have an account? <Link href="/signin">Sign in</Link>
 							</p>
 						</div>
-						<form
-							id="signUpForm"
-							className={styles.signUpForm}
-							method="POST"
-						>
+						<form id="signUpForm" className={styles.signUpForm} method="POST">
 							<InputText
 								type="text"
 								text="Username"
@@ -87,19 +82,9 @@ export default function SignUpPage() {
 								inputId="gender"
 								name="gender"
 								required={true}
-								data={[
-									"Male",
-									"Female",
-									"Other",
-									"Prefer not to say",
-								]}
+								data={['Male', 'Female', 'Other', 'Prefer not to say']}
 							/>
-							<InputDate
-								text="Date of Birth"
-								inputId="birthday"
-								name="birthday"
-								required={true}
-							/>
+							<InputDate text="Date of Birth" inputId="birthday" name="birthday" required={true} />
 						</form>
 						<div id={styles.submitGroup}>
 							<div id={styles.subForm}>
