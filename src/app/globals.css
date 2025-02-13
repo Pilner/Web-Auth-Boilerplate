@@ -1,3 +1,5 @@
+@import 'tailwindcss';
+
 /* #region CSS Variables */
 :root {
 	--main-font: 'Inter', sans-serif;
