@@ -13,18 +13,16 @@ export async function GET() {
 	if (!session) {
 		return new Response(
 			JSON.stringify({
-				status: 401,
 				message: 'Not Authenticated',
 			}),
-			{ headers }
+			{ headers, status: 401 }
 		);
 	}
 
 	return new Response(
 		JSON.stringify({
-			status: 200,
 			message: 'Authenticated',
 		}),
-		{ headers }
+		{ headers, status: 200 }
 	);
 }
