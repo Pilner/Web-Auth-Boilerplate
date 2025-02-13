@@ -1,12 +1,14 @@
 <h1 style="text-align: center">Web-Auth Boilerplate</h1>
 
-<p style="text-align: center">A NextJS + Next-Auth Website Boilerplate to quickly build your Website that has Authentication.</p>
+<p style="text-align: center">A NextJS + TailwindCSS + Next-Auth Website Boilerplate to quickly build your Website that has Authentication using Docker.</p>
 
 ## How to use
 
 _Note: Make sure you have [Node.js](https://nodejs.org/en/) installed. To check, run `node -v` in your terminal_
 
 _Note: This website uses `TypeScript`_
+
+_Note: This website uses the new `Tailwind CSS v4.0`_
 
 1. Click `Use this template` or clone into a local directory
 
@@ -21,22 +23,54 @@ npm install
 ```
 
 3. After cloning, create a `.env` or `.env.local` file in the root directory
-4. Write this inside the environment variable file
 
 ```
 NEXTAUTH_SECRET=secret
 NEXTAUTH_URL=http://localhost:3000
 ```
 
-5. Run the Server Process
+4. Run the Server Process (<kbd>Ctrl</kbd>+<kbd>C</kbd> to exit process)
 
 ```bash
 npm run dev
 ```
 
+## Docker Setup
+
+_Note: Make sure you have [Docker](https://www.docker.com/products/docker-desktop/) installed. To check, run `docker -v` in your terminal_
+
+_Note: For deployment, [learn more](https://youtu.be/DfNhBZUrA-U?si=1jwVEMA5bKeNbi4K)_
+
+1. Review/Edit the `compose.yaml` file
+
+```yaml
+services:
+  web:
+    build: .
+    ports:
+      - '3000:3000'
+    environment:
+      - NEXTAUTH_SECRET=${NEXTAUTH_SECRET}
+      - NEXTAUTH_URL=${NEXTAUTH_URL}
+```
+
+2. Run the Docker image
+
+```bash
+docker compose up
+```
+
+3. View the website at `http://localhost:3000`
+
+4. To exit the process, either use the `Docker Desktop` or run:
+
+```bash
+docker compose down
+```
+
 ## Setup
 
-1. Modify CSS Variables according to your design and color palette in `/src/app/globals.css`.
+1. Modify TailwindCSS Config according to your design and color palette in `/src/app/globals.css`.
 2. Setup `package.json` to rename the project name.
 3. Setup `src/app/layout.tsx` to edit website metadata.
 
@@ -45,15 +79,9 @@ npm run dev
 - `Navbar`
 - `Footer`
 - `Button`
-  - `LinkButton`
-  - `SubmitButton`
-  - `FunctionButton`
 - `Input`
-  - `InputText`
-  - `InputNumber`
-  - `InputSelect`
-  - `InputDate`
-  - `InputCheckbox`
+  - `TextInput`
+  - `DropdownInput`
 
 ## Routes
 
@@ -78,12 +106,10 @@ Here is the standard procedure in creating your website. This is split into two 
 ```
 src/
 - app/
-	- sample/
-		- sample2/
-			- page.tsx
-			- page.module.css
-		- page.tsx
-		- page.module.css
+| - sample/
+| | - sample2/
+| | | - page.tsx
+| | - page.tsx
 ```
 
 This will generate `localhost:3000/sample` and `localhost:3000/sample/sample2`.
@@ -92,21 +118,18 @@ This will generate `localhost:3000/sample` and `localhost:3000/sample/sample2`.
 
 ```tsx
 // /src/app/sample/page.tsx
-import { Footer } from "@/_components/semantics/Footer";
-import { Navbar } from "@/_components/semantics/Navbar";
-import styles from "./page.module.css";
+import { Footer } from '@/_components/semantics/Footer';
+import { Navbar } from '@/_components/semantics/Navbar';
 
 export default function SamplePage() {
 	return (
-		<>
+		<main className="flex min-h-screen flex-col">
 			<Navbar />
-			<section id={styles.samplePage}>
-				<div class="container">
-					<!-- CONTENT -->
-				</div>
+			<section className="h-full flex-grow">
+				<div className="container">{/* Content here */}</div>
 			</section>
 			<Footer />
-		</>
+		</main>
 	);
 }
 ```
@@ -134,9 +157,9 @@ export const config = {
 ```
 src/
 - app/
-	- api/
-		- sample/
-			- route.ts
+| - api/
+| | - sample/
+| | | - route.ts
 ```
 
 This will generate an API route in `localhost:3000/api/sample`.
@@ -159,19 +182,17 @@ export async function GET(req: NextApiRequest, res: NextApiResponse) {
 	if (req.method !== 'GET') {
 		return new Response(
 			JSON.stringify({
-				status: 405,
 				message: 'Method not allowed',
 			}),
-			headers
+			{ headers, status: 405 }
 		);
 	}
 
 	return new Response(
 		JSON.stringify({
-			status: 200,
 			message: 'GET Request Success',
 		}),
-		{ headers }
+		{ headers, status: 200 }
 	);
 }
 ```
@@ -192,10 +213,9 @@ export async function POST(req: NextApiRequest, res: NextApiResponse) {
 	if (req.method !== 'POST') {
 		return new Response(
 			JSON.stringify({
-				status: 405,
 				message: 'Method not allowed',
 			}),
-			headers
+			{ headers, status: 405 }
 		);
 	}
 
@@ -205,20 +225,18 @@ export async function POST(req: NextApiRequest, res: NextApiResponse) {
 	if (body) {
 		return new Response(
 			JSON.stringify({
-				status: 200,
 				message: 'POST Request Success',
 			}),
-			{ headers }
+			{ headers, status: 200 }
 		);
 	}
 
 	// Catch all unintended processes
 	return new Response(
 		JSON.stringify({
-			status: 500,
 			message: 'Server Error',
 		}),
-		{ headers }
+		{ headers, status: 500 }
 	);
 }
 ```
@@ -238,10 +256,9 @@ export async function GET(req: NextApiRequest, res: NextApiResponse) {
 	if (!session) {
 		return new Response(
 			JSON.stringify({
-				status: 401,
 				message: 'Not Authenticated',
 			}),
-			{ headers }
+			{ headers, status: 401 }
 		);
 	}
 
