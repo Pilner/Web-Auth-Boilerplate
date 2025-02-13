@@ -1,16 +1,17 @@
 'use client';
 
-import { getCsrfToken, signIn } from 'next-auth/react';
 import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { getCsrfToken, signIn } from 'next-auth/react';
 
 import { Footer } from '@/_components/semantics/Footer';
 import { Navbar } from '@/_components/semantics/Navbar';
-import { SubmitButton } from '@/_components/ui/Button';
-import { InputText } from '@/_components/ui/Input';
 import Link from 'next/link';
-import styles from './page.module.css';
+import { TextInput } from '@/_components/ui/Input';
+import Button from '@/_components/ui/Button';
 
-export default function SignInPage() {
+export default function LoginPage() {
+	const router = useRouter();
 	const [csrfToken, setCsrfToken] = useState<string | undefined>('');
 
 	useEffect(() => {
@@ -39,7 +40,7 @@ export default function SignInPage() {
 			if (result?.error) {
 				throw new Error(result.error);
 			} else if (result?.ok) {
-				window.location.href = '/';
+				router.push('/');
 			}
 		} catch (error) {
 			// Handle Error: By showing an alert or custom message
@@ -49,46 +50,39 @@ export default function SignInPage() {
 	}
 
 	return (
-		<>
+		<main className="flex min-h-screen flex-col">
 			<Navbar />
-			<section id={styles.signInPage}>
-				<div className="container">
-					<div id={styles.formContainer}>
-						<div id={styles.formTitleGroup}>
-							<h1 className="sectionTitleFont">Sign in</h1>
+			<section className="flex h-full flex-grow items-center justify-center">
+				<div className="container h-full">
+					<div className="mx-auto flex h-full w-[35rem] flex-col items-center justify-center gap-4 overflow-hidden rounded-xl border border-red-500 p-4">
+						<div className="flex flex-col gap-2 text-center">
+							<h1 className="text-4xl">Sign In</h1>
 							<p>
-								Don't have an account? <Link href="/signup">Sign up</Link>
+								Don't have an account?{' '}
+								<Link href="/signup">
+									<span className="hover:underline">Sign up</span>
+								</Link>
 							</p>
 						</div>
-						<form id="signInForm" className={styles.signInForm} onSubmit={handleSignIn} method="POST">
-							<InputText
-								type="text"
-								text="Username"
-								inputId="username"
-								name="username"
-								placeholder="Enter username"
-								required={true}
-							/>
-							<InputText
-								type="password"
-								text="Password"
-								inputId="password"
-								name="password"
-								placeholder="Enter Password"
-								required={true}
-							/>
-						</form>
-						<div id={styles.submitGroup}>
-							<div id={styles.subForm}>
-								<Link href="/signin/forgot">Forgot password?</Link>
+						<form className="flex w-full flex-col gap-4" onSubmit={handleSignIn}>
+							<input name="csrfToken" type="hidden" defaultValue={csrfToken} />
+							<div className="">
+								<TextInput type="text" name="username" placeholder="Username" required />
 							</div>
-
-							<SubmitButton form="signInForm" text="Sign In" />
-						</div>
+							<div className="">
+								<TextInput type="password" name="password" placeholder="Password" required />
+							</div>
+							<div className="flex items-center justify-between">
+								<Link href="/signin/forgot" className="text-sm text-blue-500 hover:underline">
+									Forgot password?
+								</Link>
+								<Button type="submit">Sign In</Button>
+							</div>
+						</form>
 					</div>
 				</div>
 			</section>
 			<Footer />
-		</>
+		</main>
 	);
 }
